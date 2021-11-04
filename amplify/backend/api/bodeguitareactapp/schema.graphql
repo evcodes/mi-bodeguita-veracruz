@@ -1,0 +1,11 @@
+
+type Unit @model {
+  id: ID!
+  number: Int!
+  client: String!
+  available: Boolean!
+  measurement: String!
+  datePaid: AWSDate!
+  dateOfEntry: AWSDate!
+  pricePaid: Float!
+}

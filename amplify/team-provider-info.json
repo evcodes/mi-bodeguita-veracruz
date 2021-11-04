@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-bodeguitareactapp-dev-00528-authRole",
+      "UnauthRoleArn": "arn:aws:iam::881985633162:role/amplify-bodeguitareactapp-dev-00528-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::881985633162:role/amplify-bodeguitareactapp-dev-00528-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-bodeguitareactapp-dev-00528-deployment",
+      "UnauthRoleName": "amplify-bodeguitareactapp-dev-00528-unauthRole",
+      "StackName": "amplify-bodeguitareactapp-dev-00528",
+      "StackId": "arn:aws:cloudformation:us-east-1:881985633162:stack/amplify-bodeguitareactapp-dev-00528/f63436d0-3ac8-11ec-9a02-0eea2070da07",
+      "AmplifyAppId": "d1sd1c5rayewy8"
+    },
+    "categories": {
+      "auth": {
+        "bodeguitareactappc67b957b": {}
+      }
+    }
+  }
+}
