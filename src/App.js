@@ -13,13 +13,13 @@ Amplify.configure(awsconfig);
 
 function App() {
   const unitDetails = {
-    number: "0003",
-    client: "Ziomara Castro",
+    number: "0001",
+    client: "Layla Castro",
     available: false,
-    measurement: "4x6",
+    measurement: "3x3",
     datePaid: "2021-11-01",
     dateOfEntry: "2021-11-02",
-    pricePaid: 2150.0,
+    pricePaid: 1290.0,
   };
 
   const [storageUnits, setUnits] = useState([]);
@@ -41,11 +41,16 @@ function App() {
   }, []);
 
   async function addUnit() {
-    const newUnit = await API.graphql({
-      query: mutations.createUnit,
-      variables: { input: unitDetails },
-    });
-    console.log(newUnit);
+    try {
+      await API.graphql({
+        query: mutations.createUnit,
+        variables: { input: unitDetails },
+      }).then((res) => {
+        console.log(res);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async function editUnit() {
