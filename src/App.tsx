@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Amplify, { API, graphqlOperation } from "aws-amplify";
+import Amplify, { API } from "aws-amplify";
 import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
 import "./App.css";
 import awsconfig from "./aws-exports";
@@ -7,7 +7,7 @@ import awsconfig from "./aws-exports";
 //mutations and queries
 import * as queries from "./graphql/queries";
 import * as mutations from "./graphql/mutations";
-import * as subscriptions from "./graphql/subscriptions";
+import { Unit } from "./types/Unit";
 
 Amplify.configure(awsconfig);
 
@@ -22,16 +22,17 @@ function App() {
     pricePaid: 1290.0,
   };
 
-  const [storageUnits, setUnits] = useState([]);
+  const [storageUnits, setUnits] = useState<[Unit] | []>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchUnits() {
       try {
-        const allUnits = await API.graphql({ query: queries.listUnits });
-        const units = allUnits.data.listUnits.items;
+        const allUnits: any = await API.graphql({ query: queries.listUnits });
+        const res = allUnits.data.listUnits.items
+        console.log();
 
-        setUnits(units);
+        setUnits(res);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -42,12 +43,11 @@ function App() {
 
   async function addUnit() {
     try {
-      await API.graphql({
+      const res = await API.graphql({
         query: mutations.createUnit,
         variables: { input: unitDetails },
-      }).then((res) => {
-        console.log(res);
-      });
+      })
+      console.log(res)
     } catch (error) {
       console.log(error);
     }
@@ -81,17 +81,17 @@ function App() {
       {loading ? (
         <p>Buscando datos...</p>
       ) : (
-        storageUnits.map((unit, index) => (
+        storageUnits.map((unit: Unit, index) => (
           <div key={index}>
             <div>
               <p>ID:{unit.id}</p>
               <button onClick={editUnit}> Editar cliente</button>
             </div>
-            <p>Numero:{unit.number}</p>
-            <p>Cliente:{unit.client}</p>
+            <p>Numero:{unit.unitNumber}</p>
+            <p>Cliente:{unit.clientName}</p>
             <p>Disponible: {unit.available ? "True" : "False"}</p>
             <p>Medida:{unit.measurement}</p>
-            <p>Fecha Pagado:{unit.datePaid}</p>
+            <p>Fecha Pagado:{unit.lastDatePaid}</p>
             <p>Fecha de entrada:{unit.dateOfEntry}</p>
             <p>Precio pago:{unit.pricePaid}</p>
             <br />
