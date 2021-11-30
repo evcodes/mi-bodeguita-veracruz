@@ -9,11 +9,11 @@ export const createUnit = /* GraphQL */ `
   ) {
     createUnit(input: $input, condition: $condition) {
       id
-      number
-      client
-      available
+      unitNumber
       measurement
-      datePaid
+      clientName
+      available
+      lastDatePaid
       dateOfEntry
       pricePaid
       createdAt
@@ -28,11 +28,11 @@ export const updateUnit = /* GraphQL */ `
   ) {
     updateUnit(input: $input, condition: $condition) {
       id
-      number
-      client
-      available
+      unitNumber
       measurement
-      datePaid
+      clientName
+      available
+      lastDatePaid
       dateOfEntry
       pricePaid
       createdAt
@@ -47,13 +47,94 @@ export const deleteUnit = /* GraphQL */ `
   ) {
     deleteUnit(input: $input, condition: $condition) {
       id
-      number
-      client
-      available
+      unitNumber
       measurement
-      datePaid
+      clientName
+      available
+      lastDatePaid
       dateOfEntry
       pricePaid
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createClient = /* GraphQL */ `
+  mutation CreateClient(
+    $input: CreateClientInput!
+    $condition: ModelClientConditionInput
+  ) {
+    createClient(input: $input, condition: $condition) {
+      id
+      name
+      email
+      phoneNumber
+      units {
+        id
+        unitNumber
+        measurement
+        clientName
+        available
+        lastDatePaid
+        dateOfEntry
+        pricePaid
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateClient = /* GraphQL */ `
+  mutation UpdateClient(
+    $input: UpdateClientInput!
+    $condition: ModelClientConditionInput
+  ) {
+    updateClient(input: $input, condition: $condition) {
+      id
+      name
+      email
+      phoneNumber
+      units {
+        id
+        unitNumber
+        measurement
+        clientName
+        available
+        lastDatePaid
+        dateOfEntry
+        pricePaid
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteClient = /* GraphQL */ `
+  mutation DeleteClient(
+    $input: DeleteClientInput!
+    $condition: ModelClientConditionInput
+  ) {
+    deleteClient(input: $input, condition: $condition) {
+      id
+      name
+      email
+      phoneNumber
+      units {
+        id
+        unitNumber
+        measurement
+        clientName
+        available
+        lastDatePaid
+        dateOfEntry
+        pricePaid
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
