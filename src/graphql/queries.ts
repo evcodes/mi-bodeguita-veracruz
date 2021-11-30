@@ -6,11 +6,11 @@ export const getUnit = /* GraphQL */ `
   query GetUnit($id: ID!) {
     getUnit(id: $id) {
       id
-      number
-      client
-      available
+      unitNumber
       measurement
-      datePaid
+      clientName
+      available
+      lastDatePaid
       dateOfEntry
       pricePaid
       createdAt
@@ -27,13 +27,56 @@ export const listUnits = /* GraphQL */ `
     listUnits(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        number
-        client
-        available
+        unitNumber
         measurement
-        datePaid
+        clientName
+        available
+        lastDatePaid
         dateOfEntry
         pricePaid
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getClient = /* GraphQL */ `
+  query GetClient($id: ID!) {
+    getClient(id: $id) {
+      id
+      name
+      email
+      phoneNumber
+      units {
+        id
+        unitNumber
+        measurement
+        clientName
+        available
+        lastDatePaid
+        dateOfEntry
+        pricePaid
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listClients = /* GraphQL */ `
+  query ListClients(
+    $filter: ModelClientFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listClients(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        email
+        phoneNumber
         createdAt
         updatedAt
       }

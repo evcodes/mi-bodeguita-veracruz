@@ -1,20 +1,19 @@
 interface UnitInterface {
-  readonly id: string;
   readonly unitNumber: number;
   readonly measurement: Sizes;
   clientName: string;
   available: boolean;
-  lastDatePaid: Date;
-  dateOfEntry: Date;
+  lastDatePaid: string;
+  dateOfEntry: string;
   pricePaid: number;
 }
 
-enum Sizes {
-  "3x3",
-  "3x5",
-  "3x6",
-  "4x5",
-  "4x6",
+export enum Sizes {
+  SMALL = "3x3",
+  MED = "3x5",
+  LARGE = "3x6",
+  XL = "4x5",
+  XXL = "4x6",
 }
 
 export class Unit {
@@ -35,10 +34,10 @@ export class Unit {
   getUnitNumber(): number {
     return this.unitNumber;
   }
-  getLastDatePaid(): Date {
+  getLastDatePaid(): string {
     return this.lastDatePaid;
   }
-  getDateOfEntry(): Date {
+  getDateOfEntry(): string {
     return this.dateOfEntry;
   }
   getPricePaid(): number {
@@ -55,10 +54,10 @@ export class Unit {
   setAvailability(avail: boolean): void {
     this.available = avail;
   }
-  setLastDatePaid(date: Date): void {
+  setLastDatePaid(date: string): void {
     this.lastDatePaid = date;
   }
-  setDateOfEntry(date: Date): void {
+  setDateOfEntry(date: string): void {
     this.dateOfEntry = date;
   }
 }

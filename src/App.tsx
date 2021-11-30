@@ -7,20 +7,13 @@ import awsconfig from "./aws-exports";
 //mutations and queries
 import * as queries from "./graphql/queries";
 import * as mutations from "./graphql/mutations";
-import { Unit } from "./types/Unit";
+import { Sizes, Unit } from "./types/Unit";
+import EditUnitModal from "./unitOperations/EditUnitModal";
 
 Amplify.configure(awsconfig);
 
 function App() {
-  const unitDetails = {
-    number: "0001",
-    client: "Layla Castro",
-    available: false,
-    measurement: "3x3",
-    datePaid: "2021-11-01",
-    dateOfEntry: "2021-11-02",
-    pricePaid: 1290.0,
-  };
+
 
   const [storageUnits, setUnits] = useState<[Unit] | []>([]);
   const [loading, setLoading] = useState(true);
@@ -43,9 +36,12 @@ function App() {
 
   async function addUnit() {
     try {
+      let today = new Date()
+      let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+      const unitData = new Unit({ unitNumber: 1, measurement: Sizes.SMALL, clientName: "Layla Castro Barquet", available: false, lastDatePaid: date, dateOfEntry: date, pricePaid: 1290 })
       const res = await API.graphql({
         query: mutations.createUnit,
-        variables: { input: unitDetails },
+        variables: { input: unitData },
       })
       console.log(res)
     } catch (error) {
@@ -84,7 +80,6 @@ function App() {
         storageUnits.map((unit: Unit, index) => (
           <div key={index}>
             <div>
-              <p>ID:{unit.id}</p>
               <button onClick={editUnit}> Editar cliente</button>
             </div>
             <p>Numero:{unit.unitNumber}</p>
@@ -94,6 +89,8 @@ function App() {
             <p>Fecha Pagado:{unit.lastDatePaid}</p>
             <p>Fecha de entrada:{unit.dateOfEntry}</p>
             <p>Precio pago:{unit.pricePaid}</p>
+
+            <EditUnitModal />
             <br />
           </div>
         ))
