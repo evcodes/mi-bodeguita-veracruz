@@ -3,6 +3,7 @@ import Amplify, { API } from "aws-amplify";
 import { withAuthenticator, AmplifySignOut } from "@aws-amplify/ui-react";
 import "./App.css";
 import awsconfig from "./aws-exports";
+import AppContainer from "./components/AppContainer";
 
 //mutations and queries
 import * as queries from "./graphql/queries";
@@ -29,7 +30,7 @@ function App() {
     async function fetchUnits() {
       try {
         const allUnits: any = await API.graphql({ query: queries.listUnits });
-        const res = allUnits.data.listUnits.items
+        const res = allUnits.data.listUnits.items;
         console.log();
 
         setUnits(res);
@@ -46,8 +47,8 @@ function App() {
       const res = await API.graphql({
         query: mutations.createUnit,
         variables: { input: unitDetails },
-      })
-      console.log(res)
+      });
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
@@ -75,6 +76,7 @@ function App() {
   return (
     <div>
       <h1>Mi bodeguita veracruz</h1>
+      <AppContainer />
       <input placeholder="unit number"></input>
       <button onClick={addUnit}> Añadir Unidad</button>
 
