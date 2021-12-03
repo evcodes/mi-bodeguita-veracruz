@@ -79,7 +79,6 @@ export default function AppContainer() {
                     ))
                 )}
 
-            <Map />
 
         </div>
     )
