@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "bodeguitareactapp",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/eddvar/Documents/programming/projects/mi-bodeguita-mgmt/bodeguita-react-app/amplify/backend/api/bodeguitareactapp/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 7
+    }
+  }
+}

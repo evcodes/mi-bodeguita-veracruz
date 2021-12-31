@@ -2,7 +2,7 @@ import Amplify from "aws-amplify";
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import "./App.css";
 import awsconfig from "./aws-exports";
-import AppContainer from "./components/AppContainer";
+import AppContainer from "./components/AppContainer/AppContainer";
 import Map from './components/Facility/Map'
 import { Route, Routes } from "react-router";
 import HomeMenu from "./components/HomeMenu";

@@ -1,6 +1,5 @@
 {
   "AppSyncApiName": "bodeguitareactapp",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "CreateAPIKey": 1,
   "DynamoDBEnableServerSideEncryption": false
 }

@@ -196,7 +196,7 @@ export type ModelIDInput = {
 
 export type ModelUnitConnection = {
   __typename: "ModelUnitConnection",
-  items?:  Array<Unit | null > | null,
+  items:  Array<Unit >,
   nextToken?: string | null,
 };
 
@@ -212,7 +212,7 @@ export type ModelClientFilterInput = {
 
 export type ModelClientConnection = {
   __typename: "ModelClientConnection",
-  items?:  Array<Client | null > | null,
+  items:  Array<Client >,
   nextToken?: string | null,
 };
 
@@ -398,7 +398,7 @@ export type ListUnitsQueryVariables = {
 export type ListUnitsQuery = {
   listUnits?:  {
     __typename: "ModelUnitConnection",
-    items?:  Array< {
+    items:  Array< {
       __typename: "Unit",
       id: string,
       unitNumber: number,
@@ -410,7 +410,7 @@ export type ListUnitsQuery = {
       pricePaid: number,
       createdAt: string,
       updatedAt: string,
-    } | null > | null,
+    } >,
     nextToken?: string | null,
   } | null,
 };
@@ -453,15 +453,28 @@ export type ListClientsQueryVariables = {
 export type ListClientsQuery = {
   listClients?:  {
     __typename: "ModelClientConnection",
-    items?:  Array< {
+    items:  Array< {
       __typename: "Client",
       id: string,
       name: string,
       email: string,
       phoneNumber: string,
+      units:  Array< {
+        __typename: "Unit",
+        id: string,
+        unitNumber: number,
+        measurement: string,
+        clientName: string,
+        available: boolean,
+        lastDatePaid: string,
+        dateOfEntry: string,
+        pricePaid: number,
+        createdAt: string,
+        updatedAt: string,
+      } | null >,
       createdAt: string,
       updatedAt: string,
-    } | null > | null,
+    } >,
     nextToken?: string | null,
   } | null,
 };

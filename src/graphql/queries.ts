@@ -77,6 +77,18 @@ export const listClients = /* GraphQL */ `
         name
         email
         phoneNumber
+        units {
+          id
+          unitNumber
+          measurement
+          clientName
+          available
+          lastDatePaid
+          dateOfEntry
+          pricePaid
+          createdAt
+          updatedAt
+        }
         createdAt
         updatedAt
       }
